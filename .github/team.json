@@ -1,0 +1,69 @@
+{
+  "teams": [
+    {
+      "name": "Querying",
+      "label": ".Team/Querying",
+      "projectUrl": "https://github.com/orgs/metabase/projects/97/views/1",
+      "members": [
+        "ranquild",
+        "kamilmielnik",
+        "romeovs",
+        "bshepherdson",
+        "metamben",
+        "lbrdnk",
+        "appleby",
+        "uladzimirdev"
+      ]
+    },
+    {
+      "name": "Drivers",
+      "label": ".Team/Drivers",
+      "members": ["snoe"]
+    },
+    {
+      "name": "Embedding",
+      "label": ".Team/Embedding",
+      "projectUrl": "https://github.com/orgs/metabase/projects/88/views/1",
+      "members": ["WiNloSt", "deniskaber", "oisincoveney", "npretto", "heypoom"]
+    },
+    {
+      "name": "BEC",
+      "label": ".Team/BackendComponents",
+      "projectUrl": "https://github.com/orgs/metabase/projects/50/views/1",
+      "members": [
+        "qnkhuat",
+        "piranha",
+        "crisptrutski"
+      ]
+    },
+    {
+      "name": "Admin Webapp",
+      "label": ".Team/AdminWebapp",
+      "members": [
+        "noahmoss",
+        "escherize",
+        "npfitz",
+        "johnswanson",
+        "rafpaf",
+        "sloansparger",
+        "iethree"
+      ]
+    },
+    {
+      "name": "DashViz",
+      "label": ".Team/DashViz",
+      "members": [
+        "alxnddr",
+        "kulyk",
+        "adam-james-v"
+      ]
+    },
+    {
+      "name": "DevEx",
+      "label": ".Team/DevEx",
+      "members": [
+        "camsaul"
+      ]
+    }
+  ]
+}
