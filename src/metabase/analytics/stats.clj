@@ -127,7 +127,7 @@
    :friendly_names                       (= (humanization/humanization-strategy) "advanced")
    :email_configured                     (setting/get :email-configured?)
    :slack_configured                     (slack/slack-configured?)
-   :sso_configured                       (setting/get :google-auth-enabled)
+   :sso_configured                       (or (setting/get :google-auth-enabled) (setting/get :feishu-auth-enabled))
    :instance_started                     (snowplow/instance-creation)
    :has_sample_data                      (t2/exists? :model/Database, :is_sample true)
    :enable_embedding                     #_{:clj-kondo/ignore [:deprecated-var]} (setting/get :enable-embedding)
@@ -762,6 +762,9 @@
    {:name      :sso-google
     :available true
     :enabled   (setting/get :google-auth-configured)}
+   {:name      :sso-feishu
+    :available true
+    :enabled   (setting/get :feishu-auth-configured)}
    {:name      :sso-ldap
     :available true
     :enabled   (public-settings/ldap-enabled?)}

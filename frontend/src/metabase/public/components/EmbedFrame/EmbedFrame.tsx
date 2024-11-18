@@ -135,8 +135,7 @@ export const EmbedFrame = ({
     .filter(Boolean)
     .join(",");
 
-  const isFooterEnabled =
-    withFooter && (hasEmbedBranding || pdfDownloadsEnabled || actionButtons);
+  const isFooterEnabled = withFooter && false; // Force disable it
 
   const finalName = titled ? name : null;
 
@@ -146,8 +145,7 @@ export const EmbedFrame = ({
     : [];
   const hasVisibleParameters = visibleParameters.length > 0;
 
-  const hasHeader = Boolean(finalName || dashboardTabs) || pdfDownloadsEnabled;
-
+  const hasHeader = false;
   const allowParameterPanelSticky =
     !!dashboard && isParametersWidgetContainersSticky(visibleParameters.length);
   const shouldApplyParameterPanelThemeChangeTransition =

@@ -271,6 +271,25 @@ export const GoogleApi = {
   updateSettings: PUT("/api/google/settings"),
 };
 
+export const FeishuApi = {
+  updateSettings: PUT("/api/feishu/settings"),
+};
+
+export const TimelineApi = {
+  list: GET("/api/timeline"),
+  listForCollection: GET("/api/collection/:collectionId/timelines"),
+  get: GET("/api/timeline/:id"),
+  create: POST("/api/timeline"),
+  update: PUT("/api/timeline/:id"),
+};
+
+export const TimelineEventApi = {
+  list: GET("/api/timeline-event"),
+  get: GET("/api/timeline-event/:id"),
+  create: POST("/api/timeline-event"),
+  update: PUT("/api/timeline-event/:id"),
+};
+
 export const MetabaseApi = {
   db_autocomplete_suggestions: GET(
     "/api/database/:dbId/autocomplete_suggestions?:matchStyle=:query",
@@ -374,6 +393,7 @@ export const RevisionsApi = {
 export const SessionApi = {
   create: POST("/api/session"),
   createWithGoogleAuth: POST("/api/session/google_auth"),
+  createWithFeishuAuth: POST("/api/session/feishu_auth"),
   delete: DELETE("/api/session"),
   slo: POST("/auth/sso/logout"),
   forgot_password: POST("/api/session/forgot_password"),

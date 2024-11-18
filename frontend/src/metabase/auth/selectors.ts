@@ -38,3 +38,7 @@ export const getSiteLocale = (state: State) => {
 export const getGoogleClientId = (state: State) => {
   return getSetting(state, "google-auth-client-id");
 };
+
+export const getFeishuClientId = (state: State) => {
+  return getSetting(state, "feishu-auth-app-id");
+};

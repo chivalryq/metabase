@@ -21,6 +21,18 @@ export const GOOGLE_SCHEMA = Yup.object({
     .default(null),
 });
 
+export const FEISHU_SCHEMA = Yup.object({
+  "feishu-auth-enabled": Yup.boolean().nullable().default(false),
+  "feishu-auth-app-id": Yup.string()
+    .nullable()
+    .default(null)
+    .when(["feishu-auth-enabled", "$feishu-auth-app-id"], REQUIRED_SCHEMA),
+  "feishu-auth-app-secret": Yup.string()
+    .nullable()
+    .default(null)
+    .when(["feishu-auth-enabled", "$feishu-auth-app-secret"], REQUIRED_SCHEMA),
+});
+
 export const LDAP_SCHEMA = Yup.object({
   ...PLUGIN_LDAP_FORM_FIELDS.formFieldsSchemas,
   "ldap-enabled": Yup.boolean().nullable().default(false),

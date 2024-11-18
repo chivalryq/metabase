@@ -194,6 +194,46 @@
             (setting/set-value-of-type! :string :google-auth-auto-create-accounts-domain domain)))
 
 ;;;
+;;; Feishu Auth
+;;;
+
+(defsetting feishu-auth-app-id
+  (deferred-tru "App ID for Feishu Sign-In.")
+  :visibility :public
+  :encryption :when-encryption-key-set
+  :audit      :getter)
+
+(defsetting feishu-auth-app-secret
+  (deferred-tru "App Secret for Feishu Sign-In.")
+  :visibility :public
+  :encryption :when-encryption-key-set
+  :audit      :getter)
+
+(defsetting feishu-auth-configured
+  (deferred-tru "Is Feishu Sign-In configured?")
+  :type   :boolean
+  :setter :none
+  :getter (fn [] (boolean (and (feishu-auth-app-id) (feishu-auth-app-secret)))))
+
+
+(defsetting feishu-auth-enabled
+  (deferred-tru "Is Feishu Sign-in currently enabled?")
+  :visibility :public
+  :type       :boolean
+  :audit      :getter
+  :getter     (fn []
+                (if-some [value (setting/get-value-of-type :boolean :feishu-auth-enabled)]
+                  value
+                  (boolean (and (feishu-auth-app-id) (feishu-auth-app-secret)))))
+  :setter     (fn [new-value]
+                (if-let [new-value (boolean new-value)]
+                  (if-not (and (feishu-auth-app-id) (feishu-auth-app-secret))
+                    (throw (ex-info (tru "Feishu Sign-In is not configured. Please set the App ID and App Secret first.")
+                                  {:status-code 400}))
+                    (setting/set-value-of-type! :boolean :feishu-auth-enabled new-value))
+                  (setting/set-value-of-type! :boolean :feishu-auth-enabled new-value))))
+
+;;;
 ;;; Common
 ;;;
 

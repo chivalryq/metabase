@@ -30,6 +30,7 @@ export const getSetting = <S extends State, T extends GetSettingKey<S>>(
 export const isSsoEnabled = (state: State) =>
   getSetting(state, "ldap-enabled") ||
   getSetting(state, "google-auth-enabled") ||
+  getSetting(state, "feishu-auth-enabled") ||
   getSetting(state, "saml-enabled") ||
   getSetting(state, "other-sso-enabled?");
 

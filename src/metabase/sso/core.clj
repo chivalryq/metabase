@@ -1,6 +1,7 @@
 (ns metabase.sso.core
   (:require
    [metabase.sso.common]
+   [metabase.sso.feishu]
    [metabase.sso.google]
    [metabase.sso.ldap]
    [metabase.sso.ldap.default-implementation]
@@ -17,9 +18,15 @@
   LDAPSettings
   ldap-groups->mb-group-ids
   ldap-search-result->user-info]
+ [metabase.sso.feishu
+  do-feishu-auth
+  feishu-auth-fetch-or-create-user!]
  [metabase.sso.settings
   google-auth-client-id
   google-auth-enabled
+  feishu-auth-app-id
+  feishu-auth-app-secret
+  feishu-auth-enabled
   ldap-enabled
   send-new-sso-user-admin-email?])
 

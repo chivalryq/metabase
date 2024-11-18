@@ -212,6 +212,7 @@ export const tokenFeatures = [
   "sandboxes",
   "scim",
   "sso_google",
+  "sso_feishu",
   "sso_jwt",
   "sso_ldap",
   "sso_saml",
@@ -378,6 +379,9 @@ interface PublicSettings {
     error?: string;
     "created-by-id"?: UserId;
   };
+  "feishu-auth-app-id": string | null;
+  "feishu-auth-app-secret": string | null;
+  "feishu-auth-enabled": boolean;
   "has-user-setup": boolean;
   "help-link": HelpLinkSetting;
   "help-link-custom-destination": string;

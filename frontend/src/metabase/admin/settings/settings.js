@@ -7,6 +7,7 @@ import {
 import { refreshSiteSettings } from "metabase/redux/settings";
 import {
   EmailApi,
+  FeishuApi,
   GoogleApi,
   LdapApi,
   SamlApi,
@@ -170,6 +171,19 @@ export const updateGoogleSettings = createThunkAction(
   function (settings) {
     return async function (dispatch) {
       const result = await GoogleApi.updateSettings(settings);
+      await dispatch(reloadSettings());
+      return result;
+    };
+  },
+);
+
+export const UPDATE_FEISHU_SETTINGS =
+  "metabase/admin/settings/UPDATE_FEISHU_SETTINGS";
+export const updateFeishuSettings = createThunkAction(
+  UPDATE_FEISHU_SETTINGS,
+  function (settings) {
+    return async function (dispatch) {
+      const result = await FeishuApi.updateSettings(settings);
       await dispatch(reloadSettings());
       return result;
     };

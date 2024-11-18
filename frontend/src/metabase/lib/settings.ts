@@ -160,6 +160,13 @@ class MetabaseSettings {
   }
 
   /**
+   * @deprecated use getSetting(state, "feishu-auth-enabled")
+   */
+  isFeishuAuthEnabled() {
+    return this.get("feishu-auth-enabled");
+  }
+
+  /**
    * @deprecated use getSetting(state, "ldap-enabled")
    */
   isLdapEnabled() {

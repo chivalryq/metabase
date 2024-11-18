@@ -483,6 +483,7 @@
                ;; (see metabase#3323)
                :sso_source   (case (:sso_source existing-user)
                                :google (when (sso/google-auth-enabled) :google)
+                               :feishu (when (sso/feishu-auth-enabled) :feishu)
                                :ldap   (when (sso/ldap-enabled) :ldap)
                                (:sso_source existing-user))})
   ;; now return the existing user whether they were originally active or not

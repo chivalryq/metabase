@@ -149,6 +149,7 @@
    "/field"                (+auth 'metabase.api.field)
    "/geojson"              'metabase.api.geojson
    "/google"               (+auth metabase.sso.api/google-auth-routes)
+   "/feishu"               (+auth metabase.sso.api/feishu-auth-routes)
    "/ldap"                 (+auth metabase.sso.api/ldap-routes)
    "/login-history"        (+auth 'metabase.login-history.api)
    "/model-index"          (+auth 'metabase.indexed-entities.api)
