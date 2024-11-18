@@ -9,7 +9,9 @@ ARG VERSION
 
 WORKDIR /home/node
 
-RUN apt-get update && apt-get upgrade -y && apt-get install openjdk-11-jdk curl git -y \
+RUN sed -i 's#http://deb.debian.org#https://mirrors.tuna.tsinghua.edu.cn/debian#g' /etc/apt/sources.list && \
+    sed -i 's#http://security.debian.org#https://mirrors.tuna.tsinghua.edu.cn/debian-security#g' /etc/apt/sources.list && \
+    apt-get update && apt-get upgrade -y && apt-get install openjdk-11-jdk curl git -y \
     && curl -O https://download.clojure.org/install/linux-install-1.11.1.1262.sh \
     && chmod +x linux-install-1.11.1.1262.sh \
     && ./linux-install-1.11.1.1262.sh
@@ -37,6 +39,7 @@ FROM eclipse-temurin:21-jre-alpine as runner
 ENV FC_LANG en-US LC_CTYPE en_US.UTF-8
 
 # dependencies
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories && apk update
 RUN apk add -U bash fontconfig curl font-noto font-noto-arabic font-noto-hebrew font-noto-cjk java-cacerts && \
     apk upgrade && \
     rm -rf /var/cache/apk/* && \
