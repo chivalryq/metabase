@@ -9,8 +9,8 @@ ARG VERSION
 
 WORKDIR /home/node
 
-RUN sed -i 's#http://deb.debian.org#https://mirrors.tuna.tsinghua.edu.cn/debian#g' /etc/apt/sources.list && \
-    sed -i 's#http://security.debian.org#https://mirrors.tuna.tsinghua.edu.cn/debian-security#g' /etc/apt/sources.list && \
+RUN sed -i 's#http://deb.debian.org#https://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
+    sed -i 's#http://security.debian.org#https://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
     apt-get update && apt-get upgrade -y && apt-get install openjdk-11-jdk curl git -y \
     && curl -O https://download.clojure.org/install/linux-install-1.11.1.1262.sh \
     && chmod +x linux-install-1.11.1.1262.sh \
