@@ -275,6 +275,10 @@ export const GoogleApi = {
   updateSettings: PUT("/api/google/settings"),
 };
 
+export const FeishuApi = {
+  updateSettings: PUT("/api/feishu/settings"),
+};
+
 export const TimelineApi = {
   list: GET("/api/timeline"),
   listForCollection: GET("/api/collection/:collectionId/timelines"),
@@ -388,6 +392,7 @@ export const RevisionsApi = {
 export const SessionApi = {
   create: POST("/api/session"),
   createWithGoogleAuth: POST("/api/session/google_auth"),
+  createWithFeishuAuth: POST("/api/session/feishu_auth"),
   delete: DELETE("/api/session"),
   slo: POST("/auth/sso/logout"),
   properties: GET("/api/session/properties"),

@@ -42,6 +42,10 @@
      google-auth-client-id
      google-auth-configured
      google-auth-enabled
+     feishu-auth-app-id
+     feishu-auth-app-secret
+     feishu-auth-enabled
+     feishu-auth-configured
      has-sample-database?
      has-user-setup
      help-link

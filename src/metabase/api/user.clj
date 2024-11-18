@@ -11,6 +11,7 @@
    [metabase.api.session :as api.session]
    [metabase.config :as config]
    [metabase.events :as events]
+   [metabase.integrations.feishu :as feishu]
    [metabase.integrations.google :as google]
    [metabase.models.collection :as collection :refer [Collection]]
    [metabase.models.dashboard :refer [Dashboard]]
@@ -471,6 +472,7 @@
                ;; if the user orignally logged in via Google Auth/LDAP and it's no longer enabled, convert them into a regular user
                ;; (see metabase#3323)
                :sso_source   (case (:sso_source existing-user)
+                               :feishu (when (feishu/feishu-auth-enabled) :feishu)
                                :google (when (google/google-auth-enabled) :google)
                                :ldap   (when (api.ldap/ldap-enabled) :ldap)
                                (:sso_source existing-user))})

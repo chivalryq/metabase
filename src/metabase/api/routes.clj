@@ -19,6 +19,7 @@
    [metabase.api.dataset :as api.dataset]
    [metabase.api.email :as api.email]
    [metabase.api.embed :as api.embed]
+   [metabase.api.feishu :as api.feishu]
    [metabase.api.field :as api.field]
    [metabase.api.geojson :as api.geojson]
    [metabase.api.google :as api.google]
@@ -119,6 +120,7 @@
   (context "/field"                [] (+auth api.field/routes))
   (context "/geojson"              [] api.geojson/routes)
   (context "/google"               [] (+auth api.google/routes))
+  (context "/feishu"               [] (+auth api.feishu/routes))
   (context "/ldap"                 [] (+auth api.ldap/routes))
   (context "/login-history"        [] (+auth api.login-history/routes))
   (context "/metabot"              [] (+auth api.metabot/routes))

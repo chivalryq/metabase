@@ -9,6 +9,7 @@
    [metabase.config :as config]
    [metabase.email.messages :as messages]
    [metabase.events :as events]
+   [metabase.integrations.feishu :as feishu]
    [metabase.integrations.google :as google]
    [metabase.integrations.ldap :as ldap]
    [metabase.models.login-history :refer [LoginHistory]]
@@ -334,6 +335,31 @@
             (throw (ex-info (str disabled-account-message)
                             {:status-code 401
                              :errors      {:account disabled-account-snippet}}))))))))
+
+(api/defendpoint POST "/feishu_auth"
+  "Login with Feishu Auth."
+  [:as {{:keys [code]} :body, :as request}]
+  {code ms/NonBlankString}
+  (when-not (feishu/feishu-auth-app-id)
+    (throw (ex-info "Feishu Auth is disabled." {:status-code 400})))
+  (if throttling-disabled?
+    (feishu/do-feishu-auth request)
+    (http-401-on-error
+      (throttle/with-throttling [(login-throttlers :ip-address) (req.util/ip-address request)]
+        (let [user (feishu/do-feishu-auth request)
+              {session-uuid :id, :as session} (create-session! :sso user (req.util/device-info request))
+              response {:id (str session-uuid)}
+              user (t2/select-one [User :id :is_active], :email (:email user))]
+          (if (and user (:is_active user))
+            (mw.session/set-session-cookies request
+                                            response
+                                            session
+                                            (t/zoned-date-time (t/zone-id "GMT")))
+            (throw (ex-info (str disabled-account-message)
+                            {:status-code 401
+                             :errors      {:account disabled-account-snippet}}))))))))
+
+
 
 (defn- +log-all-request-failures [handler]
   (with-meta
