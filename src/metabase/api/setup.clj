@@ -10,6 +10,7 @@
    [metabase.email :as email]
    [metabase.embed.settings :as embed.settings]
    [metabase.events :as events]
+   [metabase.integrations.feishu :as feishu]
    [metabase.integrations.google :as google]
    [metabase.integrations.slack :as slack]
    [metabase.models.interface :as mi]
@@ -184,6 +185,7 @@
                 :app-origin  (boolean (embed.settings/embedding-app-origins-interactive))}
    :configured {:email (email/email-configured?)
                 :slack (slack/slack-configured?)
+                :feishu (feishu/feishu-auth-enabled)
                 :sso   (google/google-auth-enabled)}
    :counts     {:user  (t2/count :model/User {:where (mi/exclude-internal-content-hsql :model/User)})
                 :card  (t2/count :model/Card {:where (mi/exclude-internal-content-hsql :model/Card)})

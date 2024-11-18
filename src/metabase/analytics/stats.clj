@@ -17,6 +17,7 @@
    [metabase.eid-translation :as eid-translation]
    [metabase.email :as email]
    [metabase.embed.settings :as embed.settings]
+   [metabase.integrations.feishu :as feishu]
    [metabase.integrations.google :as google]
    [metabase.integrations.slack :as slack]
    [metabase.models
@@ -131,7 +132,7 @@
    :friendly_names                       (= (humanization/humanization-strategy) "advanced")
    :email_configured                     (email/email-configured?)
    :slack_configured                     (slack/slack-configured?)
-   :sso_configured                       (google/google-auth-enabled)
+   :sso_configured                       (or (google/google-auth-enabled) (feishu/feishu-auth-enabled))
    :instance_started                     (snowplow/instance-creation)
    :has_sample_data                      (t2/exists? Database, :is_sample true)
    :enable_embedding                     #_{:clj-kondo/ignore [:deprecated-var]} (embed.settings/enable-embedding)
@@ -788,6 +789,9 @@
    {:name      :sso-google
     :available true
     :enabled   (google/google-auth-configured)}
+   {:name      :sso-feishu
+    :available true
+    :enabled   (feishu/feishu-auth-configured)}
    {:name      :sso-ldap
     :available true
     :enabled   (public-settings/ldap-enabled?)}

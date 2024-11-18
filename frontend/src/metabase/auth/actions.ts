@@ -74,6 +74,11 @@ interface LoginGooglePayload {
   redirectUrl?: string;
 }
 
+interface LoginFeishuPayload {
+  code: string;
+  redirectUrl?: string;
+}
+
 export const LOGIN_GOOGLE = "metabase/auth/LOGIN_GOOGLE";
 export const loginGoogle = createAsyncThunk(
   LOGIN_GOOGLE,
@@ -84,6 +89,19 @@ export const loginGoogle = createAsyncThunk(
       if (!isSmallScreen()) {
         dispatch(openNavbar());
       }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const LOGIN_FEISHU = "metabase/auth/LOGIN_FEISHU";
+export const loginFeishu = createAsyncThunk(
+  LOGIN_FEISHU,
+  async ({ code }: LoginFeishuPayload, { dispatch, rejectWithValue }) => {
+    try {
+      await SessionApi.createWithFeishuAuth({ code });
+      await dispatch(refreshSession()).unwrap();
     } catch (error) {
       return rejectWithValue(error);
     }

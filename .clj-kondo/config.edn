@@ -316,6 +316,7 @@
     metabase.formatter             #{metabase.formatter}
     metabase.integrations          #{metabase.integrations.common
                                      metabase.integrations.google
+                                     metabase.integrations.feishu
                                      metabase.integrations.ldap
                                      metabase.integrations.slack}                                   ; TODO -- consolidate these into a real API namespace.
     metabase.legacy-mbql           #{metabase.legacy-mbql.normalize
