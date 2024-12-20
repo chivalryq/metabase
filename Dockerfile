@@ -5,13 +5,11 @@
 FROM node:18-bullseye as builder
 
 ARG MB_EDITION=oss
-ARG VERSION
+ARG VERSION=v0.51.3.5-zhipu.1
 
 WORKDIR /home/node
 
-RUN sed -i 's#http://deb.debian.org#https://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
-    sed -i 's#http://security.debian.org#https://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
-    apt-get update && apt-get upgrade -y && apt-get install openjdk-11-jdk curl git -y \
+RUN apt-get update && apt-get install openjdk-11-jdk curl git -y \
     && curl -O https://download.clojure.org/install/linux-install-1.11.1.1262.sh \
     && chmod +x linux-install-1.11.1.1262.sh \
     && ./linux-install-1.11.1.1262.sh
@@ -39,9 +37,7 @@ FROM eclipse-temurin:21-jre-alpine as runner
 ENV FC_LANG en-US LC_CTYPE en_US.UTF-8
 
 # dependencies
-RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories && apk update
-RUN apk add -U bash fontconfig curl font-noto font-noto-arabic font-noto-hebrew font-noto-cjk java-cacerts && \
-    apk upgrade && \
+RUN apk update && apk add --no-cache bash fontconfig curl font-noto font-noto-arabic font-noto-hebrew font-noto-cjk java-cacerts \
     rm -rf /var/cache/apk/* && \
     mkdir -p /app/certs && \
     curl https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem -o /app/certs/rds-combined-ca-bundle.pem  && \
