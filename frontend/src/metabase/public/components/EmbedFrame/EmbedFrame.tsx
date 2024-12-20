@@ -127,7 +127,7 @@ export const EmbedFrame = ({
     .filter(Boolean)
     .join(",");
 
-  const showFooter = hasEmbedBranding || downloadsEnabled || actionButtons;
+  const showFooter = false;
 
   const finalName = titled ? name : null;
 
@@ -137,7 +137,7 @@ export const EmbedFrame = ({
     : [];
   const hasVisibleParameters = visibleParameters.length > 0;
 
-  const hasHeader = Boolean(finalName || dashboardTabs) || downloadsEnabled;
+  const hasHeader = false;
   const canParameterPanelSticky =
     !!dashboard && isParametersWidgetContainersSticky(visibleParameters.length);
 
