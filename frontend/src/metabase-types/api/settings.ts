@@ -314,6 +314,7 @@ interface AdminSettings {
   "query-caching-ttl-ratio": number;
   "google-auth-auto-create-accounts-domain": string | null;
   "google-auth-configured": boolean;
+  "feishu-auth-configured": boolean;
   "jwt-configured"?: boolean;
   "jwt-enabled"?: boolean;
   "premium-embedding-token": string | null;

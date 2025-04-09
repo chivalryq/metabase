@@ -1,7 +1,7 @@
-import { connect } from "react-redux";
 import { t } from "ttag";
 
 import { updateSettings } from "metabase/admin/settings/settings";
+import { connect } from "metabase/lib/redux";
 import { getSetting } from "metabase/selectors/settings";
 import type { Dispatch, State } from "metabase-types/store";
 
@@ -17,7 +17,7 @@ const mapStateToProps = (state: State): StateProps => ({
   name: t`Feishu Sign-in`,
   title: t`Sign in with Feishu`,
   description: t`Allows users with existing Metabase accounts to login with a Feishu account that matches their email address in addition to their Metabase username and password.`,
-  isConfigured: getSetting(state, "feishu-auth-enabled"),
+  isConfigured: getSetting(state, "feishu-auth-configured"),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
